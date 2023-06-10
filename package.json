@@ -2,6 +2,7 @@
   "name": "humalect-frontend",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.29.12",
+    "@tanstack/react-query-devtools": "^4.29.12",
     "next": "13.4.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
