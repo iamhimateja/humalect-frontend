@@ -1,6 +1,6 @@
-import ProductList from '../components/ProductList'
+export default function ProductPage({ params }: { params: { productID: string } }) {
+  console.log(params.productID)
 
-export default function Page() {
   return (
     <div className="flex-1">
       <div className="container mx-auto w-full max-w-4xl py-6 lg:py-10">
@@ -14,8 +14,6 @@ export default function Page() {
         </div>
 
         <hr className="my-8" />
-
-        <ProductList />
       </div>
     </div>
   )

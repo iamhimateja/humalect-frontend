@@ -1,4 +1,4 @@
-// import '../styles/globals.css'
+import '../styles/globals.css'
 
 import React from 'react'
 
@@ -12,8 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <Providers>{children}</Providers>
+      <body className="bg-background min-h-screen antialiased">
+        <Providers>
+          <div className="flex min-h-screen flex-col">{children}</div>
+        </Providers>
       </body>
     </html>
   )

@@ -1,0 +1,7 @@
+export { ArrowLeftIcon } from './ArrowLeftIcon'
+export { ArrowRightIcon } from './ArrowRightIcon'
+export { GridIcon } from './GridIcon'
+export { SearchIcon } from './SearchIcon'
+export { SettingsIcon } from './SettingsIcon'
+export { SpinnerIcon } from './SpinnerIcon'
+export { TableIcon } from './TableIcon'

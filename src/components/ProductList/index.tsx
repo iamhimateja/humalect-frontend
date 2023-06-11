@@ -7,6 +7,14 @@ import { DEFAULT_PRODUCTS_LIMIT } from '@/helpers/constants'
 import { usePagination, useProducts } from '@/hooks'
 import type { ProductsResponse } from '@/types'
 
+import DisplaySwitcher from './DisplaySwitcher'
+import Loading from './Loading'
+import Pagination from './Pagination'
+import ProductGrid from './ProductGrid'
+import ProductsPerPage from './ProductsPerPage'
+import ProductTable from './ProductTable'
+import Search from './Search'
+
 const ProductList = () => {
   const [total, setTotal] = useState(0)
 
@@ -15,6 +23,8 @@ const ProductList = () => {
 
   const [limit, setLimit] = useState(DEFAULT_PRODUCTS_LIMIT)
   const [debouncedLimit, setDebouncedLimit] = useState(limit)
+
+  const [display, setDisplay] = useState<'table' | 'grid'>('table')
 
   useDebounce(() => setDebouncedLimit(limit), 500, [limit])
   useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm])
@@ -27,6 +37,7 @@ const ProductList = () => {
   const {
     data: _data,
     isLoading,
+    isFetching,
     error,
   } = useProducts(
     {
@@ -68,56 +79,29 @@ const ProductList = () => {
     resetPage() // Reset current page after changing search term
   }
 
-  if (isLoading) return <div>Loading...</div>
+  const handleDisplayChange = (display: 'table' | 'grid') => {
+    setDisplay(display)
+  }
 
   if (error) return <div>An error has occurred {JSON.stringify(error)}</div>
 
   return (
-    <div>
-      <div>
-        <button onClick={prevPage} disabled={currentPage === 0}>
-          Previous
-        </button>
-        <button onClick={nextPage} disabled={currentPage === maxPage}>
-          Next
-        </button>
-        <div>Page: {currentPage + 1}</div>
-        <div>
-          <label>
-            Products per page:
-            <input type="number" min="1" value={limit} onChange={handleLimitChange} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Search:
-            <input type="text" value={searchTerm} onChange={handleSearchChange} />
-          </label>
-        </div>
+    <div className="flex flex-col">
+      <div className="-mx-4 mt-2 flex items-center justify-between sm:-mx-0">
+        <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+        <ProductsPerPage limit={limit} handleLimitChange={handleLimitChange} />
       </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Discounted price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.id}</td>
-              <td>{product.title}</td>
-              <td>{product.category}</td>
-              <td>{product.price}</td>
-              <td>{product.discountedPrice}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="-mx-4 mt-8 flex items-center justify-between sm:-mx-0">
+        <DisplaySwitcher display={display} handleDisplayChange={handleDisplayChange} />
+        <span className="inline-flex items-center rounded-full bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700">
+          Page: {currentPage + 1}
+        </span>
+        <Pagination currentPage={currentPage} maxPage={maxPage} prevPage={prevPage} nextPage={nextPage} />
+      </div>
+      <div className="relative -mx-4 mt-4 sm:-mx-0">
+        {(isLoading || isFetching) && <Loading />}
+        {display === 'table' ? <ProductTable products={data?.products} /> : <ProductGrid products={data?.products} />}
+      </div>
     </div>
   )
 }

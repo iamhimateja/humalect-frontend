@@ -1,0 +1,19 @@
+.container {
+  @apply isolate inline-flex rounded-md shadow-sm;
+}
+
+.activeDisplay {
+  @apply bg-indigo-700 text-white hover:bg-indigo-500;
+}
+
+.inActiveDisplay {
+  @apply bg-white text-gray-600 ring-1 ring-inset ring-gray-300 hover:bg-gray-50;
+}
+
+.tableSwitcher {
+  @apply relative inline-flex items-center rounded-l-md p-2 focus:z-10;
+}
+
+.gridSwitcher {
+  @apply relative -ml-px inline-flex items-center rounded-r-md p-2 focus:z-10;
+}
