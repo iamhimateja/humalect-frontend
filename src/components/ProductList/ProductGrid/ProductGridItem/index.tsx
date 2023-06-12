@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Tippy from '@tippyjs/react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -18,18 +18,18 @@ const ProductGridItem = ({ product, animationDelay }: ProductGridItemProps) => {
       className={styles.container}
       style={{ '--delay': animationDelay } as React.CSSProperties}
     >
-      <div
-        className="h-80 w-full bg-contain bg-center	bg-no-repeat ring-1 ring-inset ring-gray-500/10"
-        style={{ backgroundImage: `url(${product.thumbnail})` }}
-      />
-      <div className="p-4">
-        <span className="text-light inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium tracking-wider text-gray-600 ring-1 ring-inset	ring-gray-500/10">
-          {product.category}
-        </span>
-        <h3 className="text-md mt-1 text-gray-700">{product.title}</h3>
-        <p className="mt-1 text-sm font-medium tracking-widest">
-          <del className="text-red-400">{product.price}</del>
-          <ins className="text-bold ml-2 text-gray-900 no-underline">{product.discountedPrice}</ins>
+      <div className={styles.productThumbnail} style={{ backgroundImage: `url(${product.thumbnail})` }} />
+      <div className={styles.productInfoWrap}>
+        <Tippy content="Click to see all products in this category">
+          <Link href={`/category/${product.category}`} className={styles.categoryLink}>
+            {product.category}
+          </Link>
+        </Tippy>
+        <h3 className={styles.title}>{product.title}</h3>
+        <p className={styles.priceWrapper}>
+          <del className={styles.price}>{product.price}</del>
+          <ins className={styles.discountedPrice}>{product.discountedPrice}</ins>
+          <span className={styles.discount}>(-{product.discountPercentage}%)</span>
         </p>
       </div>
     </Link>

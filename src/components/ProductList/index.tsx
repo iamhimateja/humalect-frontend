@@ -7,15 +7,19 @@ import { DEFAULT_PRODUCTS_LIMIT } from '@/helpers/constants'
 import { usePagination, useProducts } from '@/hooks'
 import type { ProductsResponse } from '@/types'
 
+import Loading from '../Loading'
 import DisplaySwitcher from './DisplaySwitcher'
-import Loading from './Loading'
 import Pagination from './Pagination'
 import ProductGrid from './ProductGrid'
 import ProductsPerPage from './ProductsPerPage'
 import ProductTable from './ProductTable'
 import Search from './Search'
 
-const ProductList = () => {
+type ProductListProps = {
+  category?: string
+}
+
+const ProductList = ({ category }: ProductListProps) => {
   const [total, setTotal] = useState(0)
 
   const [searchTerm, setSearchTerm] = useState('')
@@ -44,6 +48,7 @@ const ProductList = () => {
       limit: debouncedLimit,
       skip: currentPage * debouncedLimit,
       q: debouncedSearchTerm,
+      category,
     },
     {
       select: (data) => {
@@ -87,9 +92,9 @@ const ProductList = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="-mx-4 mt-2 flex items-center justify-between sm:-mx-0">
+      <div className="-mx-4 mt-2 flex items-end justify-between sm:-mx-0">
         <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
-        <ProductsPerPage limit={limit} handleLimitChange={handleLimitChange} />
+        <ProductsPerPage limit={limit} handleLimitChange={handleLimitChange} maxLimit={total} />
       </div>
       <div className="-mx-4 mt-8 flex items-center justify-between sm:-mx-0">
         <DisplaySwitcher display={display} handleDisplayChange={handleDisplayChange} />

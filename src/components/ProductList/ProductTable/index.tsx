@@ -14,6 +14,10 @@ const ProductTable = ({ products }: ProductTableProps) => {
     return null
   }
 
+  if (products.length === 0) {
+    return <p className={styles.noProducts}>No products found</p>
+  }
+
   return (
     <table className={styles.table}>
       <thead>

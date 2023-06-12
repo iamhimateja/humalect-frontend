@@ -1,3 +1,4 @@
+import Tippy from '@tippyjs/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import React from 'react'
@@ -19,7 +20,6 @@ const ProductItem = ({ product, animationDelay }: ProductItemProps) => {
         <Link href={`/product/${product.id}`} className={styles.link}>
           {product.title}
         </Link>
-
         <dl className="font-normal lg:hidden">
           <dt className="mt-1 text-gray-700">Category</dt>
           <dd className="mt-1 truncate text-gray-700">{product.category}</dd>
@@ -30,10 +30,16 @@ const ProductItem = ({ product, animationDelay }: ProductItemProps) => {
         </dl>
       </td>
       <td className={clsx(styles.tableData, 'lg:table-cell')}>
-        <span className={styles.categoryPill}>{product.category}</span>
+        <Tippy content="Click to see all products in this category">
+          <Link href={`/category/${product.category}`} className={styles.categoryPill}>
+            {product.category}
+          </Link>
+        </Tippy>
       </td>
       <td className={clsx(styles.tableData, 'lg:table-cell')}>{product.price}</td>
-      <td className={clsx(styles.tableData, 'lg:table-cell')}>{product.discountedPrice}</td>
+      <td className={clsx(styles.tableData, 'lg:table-cell')}>
+        {product.discountedPrice} <span className="font-medium text-green-600">(-{product.discountPercentage}%)</span>
+      </td>
     </tr>
   )
 }

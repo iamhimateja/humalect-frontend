@@ -9,10 +9,46 @@
 }
 
 .container {
-  @apply flex flex-col justify-between rounded-md ring-1 ring-inset ring-gray-500/10 duration-150 ease-in-out hover:scale-105;
+  @apply flex flex-col justify-between overflow-hidden rounded-md ring-1 ring-inset ring-gray-500/10;
   animation-name: animateIn;
   animation-duration: 100ms;
   animation-delay: calc(var(--delay, 0) * 20ms);
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
+}
+
+.productThumbnail {
+  @apply h-80 w-full bg-contain bg-center	bg-no-repeat ring-1 ring-inset ring-gray-500/10 hover:bg-gray-50;
+}
+
+.categoryLink {
+  @apply inline-flex items-center rounded-full bg-gray-100 px-1.5 py-0.5 text-xs font-medium text-gray-600 hover:bg-gray-200 hover:text-gray-800;
+}
+
+.productInfoWrap {
+  @apply p-4 ring-1 ring-inset ring-gray-500/10;
+}
+
+.container:hover .productInfoWrap {
+  @apply bg-gray-50;
+}
+
+.title {
+  @apply mt-1 text-gray-700;
+}
+
+.priceWrapper {
+  @apply mt-1 text-sm font-medium tracking-widest;
+}
+
+.price {
+  @apply text-red-400;
+}
+
+.discount {
+  @apply ml-2 font-bold text-green-600;
+}
+
+.discountedPrice {
+  @apply ml-2 font-bold text-gray-900 no-underline;
 }

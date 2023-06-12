@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SpinnerIcon } from '../Icons'
+import { SpinnerIcon } from './Icons'
 
 const Loading = () => {
   return (

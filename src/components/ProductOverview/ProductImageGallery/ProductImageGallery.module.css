@@ -1,0 +1,36 @@
+.container {
+  @apply flex flex-col;
+}
+
+.sliderContainer {
+  @apply w-full overflow-hidden rounded-md ring-1 ring-inset ring-gray-500/30;
+}
+
+.sliderImage {
+  @apply h-full w-full object-cover object-center sm:rounded-lg;
+  position: relative !important;
+}
+
+.thumbnailsContainer {
+  @apply mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none;
+}
+
+.thumbnailGrid {
+  @apply grid grid-cols-5 gap-4;
+}
+
+.thumbnailTrigger {
+  @apply relative flex h-20 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4;
+}
+
+.thumbnailImageWrapper {
+  @apply absolute inset-0 overflow-hidden rounded-md;
+}
+
+.thumbnailImage {
+  @apply h-full w-full object-cover object-center;
+}
+
+.thumbnailHighlight {
+  @apply pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2;
+}

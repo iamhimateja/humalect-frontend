@@ -9,3 +9,7 @@
 .tableBody {
   @apply divide-y divide-gray-200 bg-white;
 }
+
+.noProducts {
+  @apply flex h-[15rem] items-center justify-center text-xl text-gray-500;
+}

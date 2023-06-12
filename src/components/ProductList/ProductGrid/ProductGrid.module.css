@@ -1,0 +1,7 @@
+.container {
+  @apply grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xl:gap-x-8;
+}
+
+.noProducts {
+  @apply flex h-[15rem] items-center justify-center text-xl text-gray-500;
+}

@@ -1,0 +1,23 @@
+.container {
+  @apply mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0;
+}
+
+.price {
+  @apply text-3xl tracking-wide text-gray-500;
+}
+
+.discountedPrice {
+  @apply mt-1 text-3xl font-bold tracking-wide text-gray-900 sm:mt-1;
+}
+
+.discount {
+  @apply mt-1 font-medium tracking-wide text-green-600;
+}
+
+.description {
+  @apply space-y-6 text-base text-gray-700;
+}
+
+.ratingHeading {
+  @apply mb-3 font-medium tracking-wide text-gray-500;
+}

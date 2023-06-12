@@ -6,3 +6,12 @@
 body {
   font-family: 'Work Sans', sans-serif;
 }
+
+.rtds-single-slide-styles {
+  padding: 0px !important;
+  height: 100% !important;
+}
+
+.rtds-single-slide-styles > div {
+  padding: 0.5rem !important;
+}

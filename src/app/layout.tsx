@@ -1,6 +1,9 @@
 import '../styles/globals.css'
+import 'tippy.js/dist/tippy.css'
 
 import React from 'react'
+
+import BaseHeader from '@/components/BaseHeader'
 
 import Providers from '../utils/provider'
 
@@ -14,7 +17,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="bg-background min-h-screen antialiased">
         <Providers>
-          <div className="flex min-h-screen flex-col">{children}</div>
+          <div className="flex min-h-screen flex-col">
+            <div className="flex-1">
+              <div className="container mx-auto w-full max-w-4xl py-6 lg:py-10">
+                <BaseHeader />
+                {children}
+              </div>
+            </div>
+          </div>
         </Providers>
       </body>
     </html>
