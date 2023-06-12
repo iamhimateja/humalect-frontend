@@ -7,10 +7,12 @@ import { DEFAULT_PRODUCTS_LIMIT } from '@/helpers/constants'
 import { usePagination, useProducts } from '@/hooks'
 import type { ProductsResponse } from '@/types'
 
+import Breadcrumbs from '../Breadcrumbs'
 import Loading from '../Loading'
 import DisplaySwitcher from './DisplaySwitcher'
 import Pagination from './Pagination'
 import ProductGrid from './ProductGrid'
+import styles from './ProductList.module.css'
 import ProductsPerPage from './ProductsPerPage'
 import ProductTable from './ProductTable'
 import Search from './Search'
@@ -91,19 +93,31 @@ const ProductList = ({ category }: ProductListProps) => {
   if (error) return <div>An error has occurred {JSON.stringify(error)}</div>
 
   return (
-    <div className="flex flex-col">
-      <div className="-mx-4 mt-2 flex items-end justify-between sm:-mx-0">
+    <div className={styles.container}>
+      <Breadcrumbs
+        {...(category
+          ? {
+              pages: [
+                {
+                  name: category,
+                  href: `/category/${category}`,
+                  current: true,
+                },
+              ],
+            }
+          : {})}
+      />
+
+      <div className={styles.filtersRow}>
         <Search searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
         <ProductsPerPage limit={limit} handleLimitChange={handleLimitChange} maxLimit={total} />
       </div>
-      <div className="-mx-4 mt-8 flex items-center justify-between sm:-mx-0">
+      <div className={styles.paginationRow}>
         <DisplaySwitcher display={display} handleDisplayChange={handleDisplayChange} />
-        <span className="inline-flex items-center rounded-full bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700">
-          Page: {currentPage + 1}
-        </span>
+        <span className={styles.currentPage}>Page: {currentPage + 1}</span>
         <Pagination currentPage={currentPage} maxPage={maxPage} prevPage={prevPage} nextPage={nextPage} />
       </div>
-      <div className="relative -mx-4 mt-4 sm:-mx-0">
+      <div className="relative mt-4 sm:mx-0">
         {(isLoading || isFetching) && <Loading />}
         {display === 'table' ? <ProductTable products={data?.products} /> : <ProductGrid products={data?.products} />}
       </div>

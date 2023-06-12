@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React from 'react'
 
 import type { Product } from '@/types'
@@ -20,21 +21,21 @@ const ProductTable = ({ products }: ProductTableProps) => {
 
   return (
     <table className={styles.table}>
-      <thead>
+      <thead className="hidden sm:table-header-group">
         <tr>
-          <th scope="col" className={styles.tableHeader}>
+          <th scope="col" className={clsx(styles.tableHeader, 'hidden md:table-cell')}>
             ID
           </th>
           <th scope="col" className={styles.tableHeader}>
             Title
           </th>
-          <th scope="col" className={styles.tableHeader}>
+          <th scope="col" className={clsx(styles.tableHeader, 'hidden lg:table-cell')}>
             Category
           </th>
-          <th scope="col" className={styles.tableHeader}>
+          <th scope="col" className={clsx(styles.tableHeader, 'hidden md:table-cell')}>
             Price
           </th>
-          <th scope="col" className={styles.tableHeader}>
+          <th scope="col" className={clsx(styles.tableHeader, 'hidden sm:table-cell')}>
             Discounted price
           </th>
         </tr>

@@ -1,7 +1,9 @@
+import clsx from 'clsx'
 import Link from 'next/link'
 import React from 'react'
 
 import { ChevronRightIcon } from '../Icons/ChevronRightIcon'
+import styles from './Breadcrumbs.module.css'
 
 type BreadcrumbPage = {
   current?: boolean
@@ -14,12 +16,16 @@ type BreadcrumbProps = {
 }
 
 const Breadcrumbs = ({ pages }: BreadcrumbProps) => {
+  if (!pages || pages?.length === 0) {
+    return null
+  }
+
   return (
     <nav className="my-4 flex" aria-label="Breadcrumb">
-      <ol role="list" className="flex items-center space-x-1">
+      <ol role="list" className={styles.breadcrumb}>
         <li>
           <div>
-            <Link href="/" className="text-sm font-medium text-gray-500 hover:text-gray-700">
+            <Link href="/" className={styles.link}>
               Home
             </Link>
           </div>
@@ -27,10 +33,10 @@ const Breadcrumbs = ({ pages }: BreadcrumbProps) => {
         {pages?.map((page) => (
           <li key={page.name}>
             <div className="flex items-center">
-              <ChevronRightIcon className="h-5 w-5 shrink-0 text-gray-400" aria-hidden="true" />
+              <ChevronRightIcon className={styles.icon} aria-hidden="true" />
               <Link
                 href={page.href}
-                className="ml-2 text-sm font-medium capitalize text-gray-500 hover:text-gray-700"
+                className={clsx(styles.link, 'ml-2')}
                 aria-current={page.current ? 'page' : undefined}
               >
                 {page.name}

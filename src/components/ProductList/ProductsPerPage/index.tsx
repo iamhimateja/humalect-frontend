@@ -12,7 +12,7 @@ type ProductsPerPageProps = {
 
 const ProductsPerPage = ({ limit, maxLimit, handleLimitChange }: ProductsPerPageProps) => {
   return (
-    <div>
+    <div className="mt-2 w-full md:mt-0 md:w-auto">
       <label htmlFor="products-per-page" className={styles.label}>
         Products per page
       </label>

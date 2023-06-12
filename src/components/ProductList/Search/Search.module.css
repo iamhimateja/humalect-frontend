@@ -1,5 +1,5 @@
 .container {
-  @apply relative mt-2 rounded-md shadow-sm;
+  @apply relative mt-2 w-full rounded-md shadow-sm md:w-auto;
 }
 
 .icon {
